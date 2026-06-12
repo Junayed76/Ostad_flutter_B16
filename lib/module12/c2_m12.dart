@@ -26,79 +26,139 @@ class _shalaState extends State<shala> {
     }
   }
 
+  bool change = true;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Form(
-            key: emailFormKey,
+        body: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
-                Stepper(
-                  currentStep: currentStep,
-                  onStepContinue: () {
-                    if (currentStep == 0) {
-                      if (emailController.text.contains('@')) {
-                        setState(() {
-                          currentStep++;
-                        });
-                      }
-                    } else if (currentStep == 1) {
-                      if (passController.text != null &&
-                          passController.text.length > 6) {
-                        login();
-                      }
-                    }
-                  },
-                  onStepCancel: () {
+                SingleChildScrollView(),
+                Form(
+                  key: emailFormKey,
+                  child: Column(
+                    children: [
+                      Stepper(
+                        currentStep: currentStep,
+                        onStepContinue: () {
+                          if (currentStep == 0) {
+                            if (emailController.text.contains('@')) {
+                              setState(() {
+                                currentStep++;
+                              });
+                            }
+                          } else if (currentStep == 1) {
+                            if (passController.text != null &&
+                                passController.text.length > 6) {
+                              login();
+                            }
+                          }
+                        },
+                        onStepCancel: () {
+                          setState(() {
+                            currentStep--;
+                          });
+                        },
+                        steps: [
+                          Step(
+                            title: Text('Email'),
+                            content: TextFormField(
+                              controller: emailController,
+                              validator: (value) {
+                                if (!value!.contains('@')) {
+                                  return 'Incorrect';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(labelText: 'Email'),
+                            ),
+                          ),
+                          Step(
+                            title: Text('Pass'),
+                            content: TextFormField(
+                              controller: passController,
+                              onFieldSubmitted: (_) {
+                                FocusScope.of(
+                                  context,
+                                ).requestFocus(SubmitButton);
+                              },
+                              validator: (value) {
+                                if (value!.length < 7) {
+                                  return 'Atleast 7 character';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                labelText: 'Password',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                        focusNode: SubmitButton,
+                        onPressed: () {
+                          login();
+                        },
+                        child: Text('Login'),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+                ElevatedButton(
+                  onPressed: () {
                     setState(() {
-                      currentStep--;
+                      change = !change;
                     });
                   },
-                  steps: [
-                    Step(
-                      title: Text('Email'),
-                      content: TextFormField(
-                        controller: emailController,
-                        validator: (value) {
-                          if (!value!.contains('@')) {
-                            return 'Incorrect';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(labelText: 'Email'),
+                  child: Text('Animate'),
+                ),
+                Row(
+                  children: [
+                    AnimatedContainer(
+                      duration: Duration(seconds: 3),
+                      height: change ? 300 : 100,
+                      width: change ? 200 : 100,
+                      color: change ? Colors.blue : Colors.red,
+                    ),
+                    AnimatedOpacity(
+                      opacity: change ? 1 : 0,
+                      duration: Duration(seconds: 2),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.orange,
                       ),
                     ),
-                    Step(
-                      title: Text('Pass'),
-                      content: TextFormField(
-                        controller: passController,
-                        onFieldSubmitted: (_) {
-                          FocusScope.of(context).requestFocus(SubmitButton);
-                        },
-                        validator: (value) {
-                          if (value!.length < 7) {
-                            return 'Atleast 7 character';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(labelText: 'Password'),
+                    AnimatedAlign(
+                      alignment: change ? Alignment.center : Alignment.bottomLeft,
+                      duration: Duration(seconds: 2),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.orange,
                       ),
+                    ),
+                    TweenAnimationBuilder(
+                      tween: Tween<double>(begin: 0, end: 100),
+                      duration: Duration(seconds: 52),
+                      builder: (context, value, child) {
+                        return Text(
+                          '${value.toInt()}',
+                          style: TextStyle(fontSize: 40),
+                        );
+                      },
                     ),
                   ],
-                ),
-                ElevatedButton(
-                  focusNode: SubmitButton,
-                  onPressed: () {
-                    login();
-                  },
-                  child: Text('Login'),
                 ),
               ],
             ),
           ),
-
         ),
       ),
     );
