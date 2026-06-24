@@ -8,9 +8,10 @@ class CalculatorAppHome extends StatefulWidget {
 }
 
 class _CalculatorAppHomeState extends State<CalculatorAppHome> {
+
   //
 
-  String calc = '0';
+  String calc = '';
   int ans = 0;
   int a = 0;
   int b = 0;
@@ -70,7 +71,7 @@ class _CalculatorAppHomeState extends State<CalculatorAppHome> {
       });
     } else if (buttonText == 'C') {
       setState(() {
-        calc = '0';
+        calc = '';
       });
     } else if (buttonText == '=') {
       calculate();
@@ -81,24 +82,41 @@ class _CalculatorAppHomeState extends State<CalculatorAppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Calculator')),
+      backgroundColor: Colors.white10,
+      appBar: AppBar(
+          title: const Text('GEN-Z FAST',style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),),
+        toolbarHeight: 90,
+        elevation: 6,
+        shadowColor: Colors.greenAccent,
+        centerTitle: true,
+        backgroundColor: Colors.greenAccent,
+      ),
       body: Column(
         children: [
           //Output Display Area
           Container(
+            margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-            color: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 54, horizontal: 12),
+            //color: Colors.white,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              //color: Colors.black,
+            ),
             child: Text(
               calc,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: Colors.black,
+                fontSize: 70,
+                color: Colors.white,
               ),
             ),
           ),
           Divider(),
+          SizedBox(height: 30,),
           //Number pad area
           Column(
             children: [
@@ -145,14 +163,16 @@ class _CalculatorAppHomeState extends State<CalculatorAppHome> {
   Widget buildButton(String buttonText, Color buttonColor) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(6),
 
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(14),
+            elevation: 2,
+            shadowColor: Colors.greenAccent,
             backgroundColor: buttonColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(100),
+              borderRadius: BorderRadiusGeometry.circular(110),
             ),
           ),
           onPressed: () {
@@ -160,7 +180,7 @@ class _CalculatorAppHomeState extends State<CalculatorAppHome> {
           },
           child: Text(
             buttonText,
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 40),
           ),
         ),
       ),
