@@ -1,0 +1,10 @@
+class Urls {
+  static const String baseUrl =
+      'https://crud-api-ostad-live.onrender.com/api/v1';
+
+  static const String readProduct =
+      '$baseUrl/ReadProduct';
+
+  static const String createProduct =
+      '$baseUrl/CreateProduct';
+}
