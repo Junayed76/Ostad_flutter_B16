@@ -18,4 +18,14 @@ class model {
       price: json['UnitPrice'],
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      "Img": img,
+      "ProductCode": DateTime.now().millisecondsSinceEpoch,
+      "ProductName": productName,
+      "Qty": 1,
+      "TotalPrice": price,
+      "UnitPrice": price,
+    };
+  }
 }
