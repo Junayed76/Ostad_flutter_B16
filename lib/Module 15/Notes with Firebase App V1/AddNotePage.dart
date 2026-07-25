@@ -6,7 +6,9 @@ class AddNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ,
+      body: Center(
+        child: Text('Add Note Page'),
+      ),
     );
   }
 }
