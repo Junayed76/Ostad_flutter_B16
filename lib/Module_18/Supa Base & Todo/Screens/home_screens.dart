@@ -73,7 +73,8 @@ class _HomeScreensState extends State<HomeScreens> {
                 ),
               ),
             ],
-          )),
+          )
+          ),
         ),
 
         body: TabBarView(
