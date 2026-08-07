@@ -3,6 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:b16/Module%2020/Assignment/Screens/loading_page.dart';
 
+import '../Screens/addtask_page.dart';
+
 
 
 
@@ -12,15 +14,9 @@ Future<void> main() async {
     url: dotenv.get('supabase_url'),
     publishableKey: dotenv.get('publishable_key'),
   );
-  runApp(MaterialApp(home:LoadingPage()));
+  runApp(MaterialApp(home:LoadingPage(),debugShowCheckedModeBanner: false,));
 }
 
-class Task{
-  final String name;
-  final String description;
-  //final bool isCompleted;
 
-  Task({required this.name, required this.description, });
-}
 
 

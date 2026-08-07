@@ -43,7 +43,7 @@ class _CompleteTaskPageState extends State<CompleteTaskPage> {
                 itemBuilder: (context, index) {
                   final task = completeTaskList[index];
                   return Card(
-                    color: Colors.lightBlue,
+                    color: Colors.lightGreen.withValues(alpha: 0.5),
                     child: ListTile(
                       title: Text('${index+1}. ${task['task_name']}'),
                       subtitle: Text('${task['task_desc']}',softWrap: true,maxLines: 3,),

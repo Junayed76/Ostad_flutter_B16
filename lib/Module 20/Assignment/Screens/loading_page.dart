@@ -19,7 +19,7 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   forward() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 5));
     if (supabase.auth.currentSession == null) {
       Navigator.pushReplacement(
         context,
@@ -33,15 +33,23 @@ class _LoadingPageState extends State<LoadingPage> {
     }
   }
 
+  String loadingImg = 'assets/images/loadingImg.png';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
-          children: [FlutterLogo(size: 50), CircularProgressIndicator()],
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.network(loadingImg, height: 50, width: 50),
+            SizedBox(height: 16.0),
+            CircularProgressIndicator(),
+            SizedBox(height: 16,),
+            Text("Loading...World's Best Todo App",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green),),
+          ],
         ),
       ),
-      bottomSheet: Text('Version Alpha 1'),
     );
   }
 }

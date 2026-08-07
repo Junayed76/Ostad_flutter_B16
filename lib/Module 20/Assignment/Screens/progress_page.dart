@@ -42,7 +42,7 @@ class _ProgressPageState extends State<ProgressPage> {
                 itemBuilder: (context, index) {
                   final task = progressTaskList[index];
                   return Card(
-                    color: Colors.redAccent,
+                    color: Colors.lightGreen.withValues(alpha: 0.5),
                     child: ListTile(
                       title: Text('${index+1}. ${task['task_name']}'),
                       subtitle: Text(

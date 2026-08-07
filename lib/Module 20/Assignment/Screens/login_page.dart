@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
-            (route) => false,
+        (route) => false,
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -62,6 +62,12 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Get Started With Us',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
             TextFormField(
               controller: emailController,
               decoration: InputDecoration(
@@ -69,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
             ),
+            SizedBox(height: 16),
             TextFormField(
               controller: passwordController,
               decoration: InputDecoration(
@@ -76,13 +83,36 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            loading ? CircularProgressIndicator():
-            ElevatedButton(onPressed: () {
-              login();
-            }, child: Text('Login')),
-            TextButton(onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpPage()));
-            }, child: Text('New? Create Account')),
+            SizedBox(height: 16),
+            loading
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 16.0,
+                      ),
+                    ),
+                    onPressed: () {
+                      login();
+                    },
+                    child: Text('Login'),
+                  ),
+            SizedBox(height: 16),
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpPage()),
+                );
+              },
+              child: Text('New? Create Account'),
+            ),
           ],
         ),
       ),

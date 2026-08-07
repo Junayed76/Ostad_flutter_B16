@@ -59,6 +59,8 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text('Join With Us',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+            SizedBox(height: 16.0),
             TextFormField(
               controller: userNameController,
               decoration: InputDecoration(
@@ -81,7 +83,16 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             loading ? CircularProgressIndicator():
-            ElevatedButton(onPressed: (){
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 16.0),
+                ),
+                onPressed: (){
               signup();
             }, child: Text('Sign Up')),
             TextButton(onPressed: (){

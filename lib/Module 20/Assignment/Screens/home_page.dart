@@ -14,14 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  /*late int newTasks ;
-  late int progressTask;
-  late int completedTasks;*/
   final ApiService apiService = ApiService();
 
-   int newTaskList = 0;
-   int progTaskList = 0;
-   int compTaskList =0;
+  int newTaskList = 0;
+  int progTaskList = 0;
+  int compTaskList = 0;
 
   initState() {
     super.initState();
@@ -45,8 +42,15 @@ class _HomePageState extends State<HomePage> {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Supa Todo'),
+          title: const Text(
+            'Supa Todo',
+            style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+          ),
+          backgroundColor: Colors.green,
           bottom: TabBar(
+            indicatorColor: Colors.white,
+            labelColor: Colors.greenAccent,
+            unselectedLabelColor: Colors.white.withValues(alpha: 0.5),
             tabs: [
               Tab(icon: Icon(Icons.list_alt), text: 'New Task($newTaskList)'),
               Tab(
@@ -64,10 +68,10 @@ class _HomePageState extends State<HomePage> {
         ),
         body: TabBarView(
           children: [
-            NewTaskPage(updateTaskCount: countTask,),
-            ProgressPage(updateTaskCount: countTask,),
-            AddTaskPage(updateTaskCount: countTask,),
-            CompleteTaskPage(updateTaskCount: countTask,),
+            NewTaskPage(updateTaskCount: countTask),
+            ProgressPage(updateTaskCount: countTask),
+            AddTaskPage(updateTaskCount: countTask),
+            CompleteTaskPage(updateTaskCount: countTask),
             ProfilePage(),
           ],
         ),

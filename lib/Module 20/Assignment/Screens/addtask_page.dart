@@ -26,13 +26,23 @@ class _AddTaskPageState extends State<AddTaskPage> {
           children: [
             TextFormField(
               controller: taskNameController,
-              decoration: InputDecoration(hintText: 'Task Name'),
+              decoration: InputDecoration(hintText: 'Task Name',border: OutlineInputBorder()),
             ),
+            SizedBox(height: 16.0,),
             TextFormField(
               controller: taskDescriptionController,
-              decoration: InputDecoration(hintText: 'Task Description'),
+              decoration: InputDecoration(hintText: 'Task Description',border: OutlineInputBorder()),
             ),
+            SizedBox(height: 16.0,),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 16.0),
+              ),
               onPressed: ()  {
                  apiService.newTask(
                   taskNameController.text,
